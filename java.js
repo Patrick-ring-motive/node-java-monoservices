@@ -3,6 +3,8 @@ const fs = require('fs');
 var globalObject = global || globalThis || this;
 globalObject.globalObject = globalObject;
 globalObject.Java={};
+Java.loaded=new Promise((resolver) => {Java.loader=resolver;});
+
 
 void async function javaBuilder(){
 
@@ -24,6 +26,7 @@ for(let i=0;i<dir_length;i++){
   }
 }
 
+Java.loader();
 
 
 
@@ -61,7 +64,4 @@ console.log(out);
 }
 
 
-
-let currentTime = await Java.Main();
-console.log(currentTime);
 }?.();
