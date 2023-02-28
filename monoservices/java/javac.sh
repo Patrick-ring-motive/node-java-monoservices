@@ -1,3 +1,3 @@
-cd /home/runner/node-java-monoservices/monoservices/java
+cd ./monoservices/java/
 javac $@
 echo $@

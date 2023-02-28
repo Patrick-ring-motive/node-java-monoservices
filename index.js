@@ -1,36 +1,44 @@
-require('./java.js');
-var http = require('http');
-void async function NodeServer(){
-await Java.loaded;
+require('./monoservices/java/java.js');
+require('./lib/voidImports.js');
+const http = require('http');
 
-http.createServer(onRequest).listen(3000);
+void async function NodeServer() {
+  await imports();
 
-async function onRequest(req, res) {
 
-  let path = req.url;
-  switch (path) {
+  http.createServer(onRequest).listen(3000);
 
-    case "/time":
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.end(await Java.Main("asdf"));
-    case "/multiply":
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.end(await Java.multiply(20,25));
-    default:
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.end('Java');
+  console.log('Server listening on port 3000');
+
+  async function onRequest(req, res) {
+
+    let path = req.url;
+    switch (path) {
+
+      case "/time":
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.end(await Java.Main("asdf"));
+        break;
+      case "/multiply":
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.end(await Java.multiply(20, 25));
+        break;
+      default:
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.end('Java');
+        break;
+    }
+
+
+
+
   }
-
-
-
-
-}
 
 
 
