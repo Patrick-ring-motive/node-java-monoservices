@@ -5,7 +5,6 @@ const http = require('http');
 void async function NodeServer() {
   await imports();
 
-
   http.createServer(onRequest).listen(3000);
 
   console.log('Server listening on port 3000');
@@ -35,12 +34,6 @@ void async function NodeServer() {
         break;
     }
 
-
-
-
   }
-
-
-
 
 }?.();

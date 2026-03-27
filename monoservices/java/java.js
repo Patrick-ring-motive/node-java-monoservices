@@ -1,15 +1,20 @@
-const { exec, execSync } = require("child_process");
+const {
+  exec,
+  execSync
+} = require("child_process");
 const fs = require('fs');
 require('../../lib/voidImports.js');
 
 var globalObject = global || globalThis || this;
 globalObject.globalObject = globalObject;
 globalObject.Java = {};
-Java.loaded = new Promise((resolver) => { Java.loader = resolver; return Java.loader; });
+Java.loaded = new Promise((resolver) => {
+  Java.loader = resolver;
+  return Java.loader;
+});
 emport(Java.loaded);
 
 void async function JavaBuilder() {
-
 
   const jdir = './monoservices/java/';
   const dir = fs.readdirSync(jdir);
@@ -30,8 +35,6 @@ void async function JavaBuilder() {
   }
 
   Java.loader();
-
-
 
   async function execAsync(cmd) {
     let output = '';
@@ -56,8 +59,6 @@ void async function JavaBuilder() {
     });
     return output.trim();
   }
-
-
 
   async function javac(file) {
 
